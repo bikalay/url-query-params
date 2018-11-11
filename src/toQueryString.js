@@ -3,7 +3,7 @@
 /**
  * Converts any value to string;
  * @param {*} value
- * @returns {Promise<string>}
+ * @returns {string}
  */
 export function paramToString (value: any): string {
     switch(Object.prototype.toString.call(value)) {
