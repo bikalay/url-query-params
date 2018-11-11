@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src/ -d lib/",
     "prepublish": "npm run build",
-    "test": "jest",
+    "test": "jest  --coverage --coverageReporters=text-lcov | coveralls",
     "coverage": "jest --coverage",
     "flow": "flow",
     "docs": "documentation build src/** -f html -o docs"
