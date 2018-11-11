@@ -1,0 +1,51 @@
+{
+  "name": "url-query-params",
+  "version": "0.0.1",
+  "description": "Library to work with url parameters",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel src/ -d lib/",
+    "prepublish": "npm run build",
+    "test": "jest",
+    "coverage": "jest --coverage",
+    "flow": "flow",
+    "docs": "documentation build src/** -f html -o docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bikalay/url-query-params.git"
+  },
+  "keywords": [
+    "query",
+    "string",
+    "url",
+    "parameters",
+    "params"
+  ],
+  "author": "Alexandr Vovchuk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bikalay/url-query-params/issues"
+  },
+  "homepage": "https://github.com/bikalay/url-query-params#readme",
+  "devDependencies": {
+    "babel-cli": "6.26.0",
+    "babel-eslint": "10.0.1",
+    "babel-plugin-add-module-exports": "1.0.0",
+    "babel-plugin-dynamic-import-node": "2.1.0",
+    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
+    "babel-preset-flow": "6.23.0",
+    "coveralls": "3.0.2",
+    "eslint": "5.6.1",
+    "eslint-config-standart": "0.2.0",
+    "eslint-plugin-flowtype": "2.50.3",
+    "eslint-plugin-import": "2.14.0",
+    "eslint-plugin-jest": "21.24.1",
+    "eslint-plugin-promise": "4.0.1",
+    "eslint-plugin-standard": "4.0.0",
+    "flow-bin": "0.73.0",
+    "flow-declarations": "0.4.20",
+    "jest": "23.6.0",
+    "jsdoc": "3.5.5"
+  }
+}
