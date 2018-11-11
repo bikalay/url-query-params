@@ -5,3 +5,5 @@
 
 
 Library with functions to work with url parameters
+
+[Full documentation](https://bikalay.github.io/url-query-params/)
