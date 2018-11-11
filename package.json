@@ -3,13 +3,16 @@
   "version": "0.0.1",
   "description": "Library to work with url parameters",
   "main": "lib/index.js",
+  "typings": "typings/types.d.ts",
   "scripts": {
-    "build": "babel src/ -d lib/",
+    "build": "./node_modules/.bin/babel src/ -d lib/",
     "prepublish": "npm run build",
-    "test": "jest  --coverage --coverageReporters=text-lcov | coveralls",
-    "coverage": "jest --coverage",
+    "test": "./node_modules/.bin/jest  --coverage --coverageReporters=text-lcov | coveralls",
+    "coverage": "./node_modules/.bin/jest --coverage",
     "flow": "flow",
-    "docs": "documentation build src/** -f html -o docs"
+    "docs": "./node_modules/.bin/documentation build src/** -f html -o docs",
+    "ts-typings": "./node_modules/.bin/jsdoc -d typings -t node_modules/tsd-jsdoc/dist -r lib",
+    "browserify": "./node_modules/.bin/browserify browser/url-query-params.js | ./node_modules/.bin/uglifyjs > lib/url-query-params.min.js"
   },
   "repository": {
     "type": "git",
@@ -35,7 +38,9 @@
     "babel-plugin-dynamic-import-node": "2.1.0",
     "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
     "babel-preset-flow": "6.23.0",
+    "browserify": "16.2.3",
     "coveralls": "3.0.2",
+    "documentation": "8.1.2",
     "eslint": "5.6.1",
     "eslint-config-standart": "0.2.0",
     "eslint-plugin-flowtype": "2.50.3",
@@ -46,6 +51,8 @@
     "flow-bin": "0.73.0",
     "flow-declarations": "0.4.20",
     "jest": "23.6.0",
-    "jsdoc": "3.5.5"
+    "jsdoc": "3.5.5",
+    "tsd-jsdoc": "2.0.0-beta.6",
+    "uglify-es": "3.3.9"
   }
 }

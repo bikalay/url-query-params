@@ -95,7 +95,7 @@ export function arrayToParam(key: string, arr: Array<any>): Array<{key: string, 
  * @param {Object} object - Data object to convert to query string
  * @returns string - Result query string
  */
-export function toQueryString(object: {[string]: any }): string {
+export function queryString(object: {[string]: any }): string {
     if (Object.prototype.toString.call(object) === '[object Object]') {
         let resultArray: Array<{key: string, value: any}> = [];
         const keys = Object.keys(object);

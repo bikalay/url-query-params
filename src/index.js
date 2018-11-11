@@ -1,3 +1,3 @@
 /* @flow */
 
-export { toQueryString, paramToString } from '../src/toQueryString';
+export { queryString, paramToString } from '../src/query-string';

@@ -1,15 +1,15 @@
-import {toQueryString} from '../src/toQueryString';
+import {queryString} from '../src/query-string';
 
 test('Stringify flat object', () => {
-    expect(toQueryString({a: 1, b:-2, c: 'c', d: true, e: 1.45})).toBe('a=1&b=-2&c=c&d=true&e=1.45');
+    expect(queryString({a: 1, b:-2, c: 'c', d: true, e: 1.45})).toBe('a=1&b=-2&c=c&d=true&e=1.45');
 });
 
 test('Stringify array object', () => {
-    expect(toQueryString({a: [{b:1, c:2}, {b:3, c:4}]})).toBe('a[0][b]=1&a[0][c]=2&a[1][b]=3&a[1][c]=4');
+    expect(queryString({a: [{b:1, c:2}, {b:3, c:4}]})).toBe('a[0][b]=1&a[0][c]=2&a[1][b]=3&a[1][c]=4');
 });
 
 test('Stringify nested object', () => {
-    expect(toQueryString({
+    expect(queryString({
         a: {
             p: 1,
             b: {
@@ -25,7 +25,7 @@ test('Stringify nested object', () => {
 });
 
 test('Stringify nested object and arrays', () => {
-    expect(toQueryString({
+    expect(queryString({
         a: {
             p:1,
             b:{
@@ -46,7 +46,7 @@ test('Stringify nested object and arrays', () => {
 });
 
 test('Stringify nested deep object and arrays', () => {
-    expect(toQueryString({
+    expect(queryString({
         a: {
             p:1,
             b:{
@@ -67,8 +67,8 @@ test('Stringify nested deep object and arrays', () => {
 });
 
 test('Stringify not object data', () => {
-    expect(toQueryString(1)).toBe('1');
-    expect(toQueryString('hi')).toBe('hi');
-    expect(toQueryString(new Date(0))).toBe('1970-01-01T00%3A00%3A00.000Z');
-    expect(toQueryString('привет')).toBe('%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82');
+    expect(queryString(1)).toBe('1');
+    expect(queryString('hi')).toBe('hi');
+    expect(queryString(new Date(0))).toBe('1970-01-01T00%3A00%3A00.000Z');
+    expect(queryString('привет')).toBe('%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82');
 });
