@@ -6,7 +6,7 @@
  * @example
  * paramToString(1) // -> '1'
  * @example
- * paramToString(new Date()) // -> '2018-11-11T17%3A22%3A58.937Z'
+ * paramToString(new Date()) // -> "2018-11-11T17%3A22%3A58.937Z"
  * @example
  * paramToString('m&m\'s') // -> 'm%26m's'
  * @example
@@ -37,7 +37,7 @@ export function paramToString (value: any): string {
  * @returns {Array}
  */
 
-export function objectToParams(key: string, value: {[string]: any }): Array<{key: string, value: any}> {
+function objectToParams(key: string, value: { [string]: any }): Array<{ key: string, value: any }> {
     const keys = Object.keys(value);
     const fields = keys.map(k => ({key: `${key}[${k}]`, value: value[k]}));
     let result = [];
@@ -63,7 +63,7 @@ export function objectToParams(key: string, value: {[string]: any }): Array<{key
  * @param {Array} arr - Field value
  * @returns {Array}
  */
-export function arrayToParam(key: string, arr: Array<any>): Array<{key: string, value: any}> {
+function arrayToParam(key: string, arr: Array<any>): Array<{ key: string, value: any }> {
     const fields = arr.map((val, index) => ({key: `${key}[${index}]`, value: val}));
     let result = [];
     fields.forEach(res => {
@@ -82,6 +82,20 @@ export function arrayToParam(key: string, arr: Array<any>): Array<{key: string, 
     return result;
 }
 
+function appendParamToQSMap(key: string, value: any, resultArray: Array<any>): void {
+    switch (Object.prototype.toString.call(value)) {
+        case '[object Object]':
+            resultArray = resultArray.concat(objectToParams(key, value));
+            break;
+        case '[object Array]':
+            resultArray = resultArray.concat(arrayToParam(key, value));
+            break;
+        default:
+            resultArray.push({key, value});
+            break;
+    }
+}
+
 /**
  * This function converts data object to query string
  *
@@ -95,23 +109,19 @@ export function arrayToParam(key: string, arr: Array<any>): Array<{key: string, 
  * @param {Object} object - Data object to convert to query string
  * @returns string - Result query string
  */
-export function queryString(object: {[string]: any }): string {
+export function queryString(object: any): string {
     if (Object.prototype.toString.call(object) === '[object Object]') {
         let resultArray: Array<{key: string, value: any}> = [];
         const keys = Object.keys(object);
         keys.forEach(key => {
             const value = object[key];
-            switch(Object.prototype.toString.call(value)) {
-                case '[object Object]':
-                    resultArray = resultArray.concat(objectToParams(key, value));
-                    break;
-                case '[object Array]':
-                    resultArray = resultArray.concat(arrayToParam(key, value));
-                    break;
-                default:
-                    resultArray.push({key, value});
-                    break;
-            }
+            appendParamToQSMap(key, value, resultArray);
+        });
+        return resultArray.map(item => `${item.key}=${paramToString(item.value)}`).join('&');
+    } else if (Object.prototype.toString.call(object) === '[object Array]') {
+        let resultArray: Array<{ key: string, value: any }> = [];
+        object.forEach((value, key) => {
+            appendParamToQSMap(key, value, resultArray);
         });
         return resultArray.map(item => `${item.key}=${paramToString(item.value)}`).join('&');
     }

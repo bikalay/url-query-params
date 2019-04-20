@@ -1,4 +1,4 @@
-import {queryString} from '../src/query-string';
+import { queryString } from '../src/query-string';
 
 test('Stringify flat object', () => {
     expect(queryString({a: 1, b:-2, c: 'c', d: true, e: 1.45})).toBe('a=1&b=-2&c=c&d=true&e=1.45');
@@ -59,11 +59,15 @@ test('Stringify nested deep object and arrays', () => {
             d: true
         },
         e: [1,2,3],
-        g:[
+        g: [
             {key:1, val:[{a:1, b:[1,2,3]}]},
             {key:2, val:[{a:2, b:[3,2,1]}]}
         ]
     })).toBe('a[p]=1&a[b][m]=m&a[b][n]=5&c[t]=c&c[d]=true&e[0]=1&e[1]=2&e[2]=3&g[0][key]=1&g[0][val][0][a]=1&g[0][val][0][b][0]=1&g[0][val][0][b][1]=2&g[0][val][0][b][2]=3&g[1][key]=2&g[1][val][0][a]=2&g[1][val][0][b][0]=3&g[1][val][0][b][1]=2&g[1][val][0][b][2]=1');
+});
+
+test('Stringify nested arrays', () => {
+    expect(queryString([1, 2, 3, [4, 5, [5, 6, 7]], {a: 6}])).toBe('0=1&1=2&2=3&3[0]=4&3[1]=5&3[2][0]=5&3[2][1]=6&3[2][2]=7&4[a]=6');
 });
 
 test('Stringify not object data', () => {
