@@ -80,7 +80,7 @@ function arrayToParam(key: string, arr: Array<any>): Array<{ key: string, value:
     return result;
 }
 
-function appendParamToQSMap(key: string, value: any): void {
+function appendParamToQSMap(key: string, value: any): Array<{ key: string, value: any }> {
     switch (Object.prototype.toString.call(value)) {
         case '[object Object]':
             return objectToParams(key, value);

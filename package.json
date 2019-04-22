@@ -5,14 +5,14 @@
   "main": "lib/index.js",
   "typings": "typings/types.d.ts",
   "scripts": {
-      "build": "./node_modules/.bin/babel src/ -d lib/ & npm run browserify & npm run docs & npm run coverage & npm run ts-typings",
+    "build": "./node_modules/.bin/babel src/ -d lib/ & npm run browserify & npm run docs & npm run coverage & npm run ts-typings",
     "prepublish": "npm run build",
     "test": "./node_modules/.bin/jest  --coverage --coverageReporters=text-lcov | coveralls",
     "coverage": "./node_modules/.bin/jest --coverage",
     "flow": "flow",
     "docs": "./node_modules/.bin/documentation build src/** -f html -o docs",
     "ts-typings": "./node_modules/.bin/jsdoc -d typings -t node_modules/tsd-jsdoc/dist -r lib",
-      "browserify": "./node_modules/.bin/browserify browser/url-query-params.js -o dist/url-query-params.js & ./node_modules/.bin/browserify browser/url-query-params.js | ./node_modules/.bin/uglifyjs > dist/url-query-params.min.js"
+    "browserify": "./node_modules/.bin/browserify browser/url-query-params.js -o dist/url-query-params.js & ./node_modules/.bin/browserify browser/url-query-params.js | ./node_modules/.bin/uglifyjs > dist/url-query-params.min.js"
   },
   "repository": {
     "type": "git",
@@ -48,9 +48,9 @@
     "eslint-plugin-jest": "21.24.1",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-standard": "4.0.0",
-    "flow-bin": "0.73.0",
-    "flow-declarations": "0.4.20",
-    "jest": "23.6.0",
+    "flow-bin": "0.97.0",
+    "flow-declarations": "0.4.27",
+    "jest": "24.7.1",
     "jsdoc": "3.5.5",
     "tsd-jsdoc": "2.0.0-beta.6",
     "uglify-es": "3.3.9"
