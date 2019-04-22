@@ -27,8 +27,6 @@ export function paramToString (value: any): string {
     }
 }
 
-
-
 /**
  * @private
  * Converts field with object value to array of query string keys and values
@@ -82,17 +80,14 @@ function arrayToParam(key: string, arr: Array<any>): Array<{ key: string, value:
     return result;
 }
 
-function appendParamToQSMap(key: string, value: any, resultArray: Array<any>): void {
+function appendParamToQSMap(key: string, value: any): void {
     switch (Object.prototype.toString.call(value)) {
         case '[object Object]':
-            resultArray = resultArray.concat(objectToParams(key, value));
-            break;
+            return objectToParams(key, value);
         case '[object Array]':
-            resultArray = resultArray.concat(arrayToParam(key, value));
-            break;
+            return arrayToParam(key, value);
         default:
-            resultArray.push({key, value});
-            break;
+            return [{key, value}];
     }
 }
 
@@ -115,13 +110,13 @@ export function queryString(object: any): string {
         const keys = Object.keys(object);
         keys.forEach(key => {
             const value = object[key];
-            appendParamToQSMap(key, value, resultArray);
+            resultArray = resultArray.concat(appendParamToQSMap(key, value));
         });
         return resultArray.map(item => `${item.key}=${paramToString(item.value)}`).join('&');
     } else if (Object.prototype.toString.call(object) === '[object Array]') {
         let resultArray: Array<{ key: string, value: any }> = [];
         object.forEach((value, key) => {
-            appendParamToQSMap(key, value, resultArray);
+            resultArray = resultArray.concat(appendParamToQSMap(key, value));
         });
         return resultArray.map(item => `${item.key}=${paramToString(item.value)}`).join('&');
     }
