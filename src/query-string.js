@@ -80,6 +80,13 @@ function arrayToParam(key: string, arr: Array<any>): Array<{ key: string, value:
     return result;
 }
 
+/**
+ * @private
+ * Converts key/value to query string params array
+ * @param {string} key - field key
+ * @param {*} value - field value
+ * @returns {Array} - query string params array
+ */
 function appendParamToQSMap(key: string, value: any): Array<{ key: string, value: any }> {
     switch (Object.prototype.toString.call(value)) {
         case '[object Object]':
@@ -102,7 +109,7 @@ function appendParamToQSMap(key: string, value: any): Array<{ key: string, value
  * toQueryString({a: [{b: 1, c: 2}, {b: 3, c: 4}]}) // -> 'a[0][b]=1&a[0][c]=2&a[1][b]=3&a[1][c]=4'
  *
  * @param {Object} object - Data object to convert to query string
- * @returns string - Result query string
+ * @returns {string} - Result query string
  */
 export function queryString(object: any): string {
     if (Object.prototype.toString.call(object) === '[object Object]') {

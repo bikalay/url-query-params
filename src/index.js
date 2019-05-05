@@ -1,3 +1,4 @@
 /* @flow */
 
-export { queryString, paramToString } from '../src/query-string';
+export { queryString } from '../src/query-string';
+export { processUrl } from '../src/apply-url';
