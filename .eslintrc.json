@@ -1,5 +1,9 @@
 {
   "extends": ["plugin:flowtype/recommended"],
   "plugins": ["jest", "flowtype"],
-  "parser": "babel-eslint"
+  "parser": "babel-eslint",
+  "parserOptions": {
+      "sourceType": "module",
+      "allowImportExportEverywhere": true
+  }
 }

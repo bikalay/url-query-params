@@ -32,12 +32,13 @@
   },
   "homepage": "https://github.com/bikalay/url-query-params#readme",
   "devDependencies": {
-    "babel-cli": "6.26.0",
+    "@babel/cli": "7.4.4",
+    "@babel/core": "7.4.4",
+    "@babel/plugin-transform-modules-commonjs": "7.4.4",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-flow": "^7.0.0",
     "babel-eslint": "10.0.1",
-    "babel-plugin-add-module-exports": "1.0.0",
-    "babel-plugin-dynamic-import-node": "2.1.0",
-    "babel-plugin-transform-es2015-modules-commonjs": "6.26.2",
-    "babel-preset-flow": "6.23.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "browserify": "16.2.3",
     "coveralls": "3.0.2",
     "documentation": "8.1.2",
@@ -51,7 +52,7 @@
     "flow-bin": "0.97.0",
     "flow-declarations": "0.4.27",
     "jest": "24.7.1",
-    "jsdoc": "3.5.5",
+    "jsdoc": "3.6.0",
     "tsd-jsdoc": "2.0.0-beta.6",
     "uglify-es": "3.3.9"
   }
