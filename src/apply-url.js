@@ -91,7 +91,7 @@ export function applyValue(data: any, fieldName: string, resultObj: any): any {
  * @param {boolean} skipUnexistedInTemplate - skip params not presented in url template
  * @returns {string} - Result url
  */
-export function processUrl(url: string, data: any, skipUnexistedInTemplate?: boolean): string {
+export function processUrl(url: string, data: any, skipUnexistedInTemplate: ?boolean): string {
     const params = getUrlParams(url);
     params.forEach(param => {
         const value = getValue(data, param);
