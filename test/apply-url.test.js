@@ -35,13 +35,14 @@ test('processUrl', () => {
         .toBe('http://example.org/api/v1/test/test1/test2/1000');
     expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldFive/:fieldTwo.fieldFor', { fieldOne: 'test1', fieldTwo: { fieldFor: 1000 } }))
         .toBe('http://example.org/api/v1/test/test1//1000');
-    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?:fieldThree&:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }, true))
+    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?:fieldThree&:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }))
         .toBe('http://example.org/api/v1/test/test1/1000?fieldThree=6&fieldFour=test4');
-    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?test=6?:fieldThree&:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }, true))
+    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?test=6?:fieldThree&:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }))
         .toBe('http://example.org/api/v1/test/test1/1000?test=6&fieldThree=6&fieldFour=test4');
-    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?test=test&test1=7?:fieldThree?:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }, true))
+    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?test=test&test1=7?:fieldThree?:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }))
         .toBe('http://example.org/api/v1/test/test1/1000?test=test&test1=7&fieldThree=6&fieldFour=test4');
-    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?test=test?:fieldThree&test1=7?:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }, true))
+    expect(processUrl('http://example.org/api/v1/test/:fieldOne/:fieldTwo?test=test?:fieldThree&test1=7?:fieldFour', { fieldOne: 'test1', fieldTwo: 1000, fieldThree: 6, fieldFour: 'test4' }))
         .toBe('http://example.org/api/v1/test/test1/1000?test=test&test1=7&fieldThree=6&fieldFour=test4');
-
+    expect(processUrl('http://example.org/api/v1/test/:fieldOne/test2/:fieldTwo', { fieldOne: 'test1', fieldTwo: 1000 }, {a: 5, b: 6}))
+        .toBe('http://example.org/api/v1/test/test1/test2/1000?a=5&b=6');
 });

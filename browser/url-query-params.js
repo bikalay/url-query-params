@@ -1,5 +1,6 @@
 var urlQueryParams = require('../lib/query-string');
+var applyUrl = require('../lib/apply-url');
 window.urlQueryParams = {
     queryString: urlQueryParams.queryString,
-    paramToString: urlQueryParams.paramToString
+    processUrl: applyUrl.processUrl
 };

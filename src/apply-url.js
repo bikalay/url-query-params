@@ -2,9 +2,10 @@
 import { paramToString, queryString } from './query-string';
 
 /**
+ * Returns array of query string parameters from url template string
  * @private
- * @param {string} url
- * @returns {Array}
+ * @param {string} url - url template string
+ * @returns {Array} - array or query string params
  */
 export function getQueryParams(url: string): Array<string> {
     let currentFieldArr;
@@ -19,9 +20,10 @@ export function getQueryParams(url: string): Array<string> {
 }
 
 /**
+ * Returns array of url parameters from url template string
  * @private
- * @param {string} url
- * @returns {Array}
+ * @param {string} url - url template string
+ * @returns {Array} - array url params
  */
 export function getUrlParams(url: string): Array<string> {
     let currentFieldArr;
@@ -37,6 +39,13 @@ export function getUrlParams(url: string): Array<string> {
 
 /**
  * @private
+ * Extract field value by field name
+ *
+ * @example
+ * getValue({a: 2}, 'a') // -> 2
+ * @example
+ * getValue({a: {b: {c: 5}}}, 'a.b.c') // -> 5
+ *
  * @param {*} data
  * @param {string} fieldName
  * @returns {*}
@@ -84,26 +93,35 @@ export function applyValue(data: any, fieldName: string, resultObj: any): any {
 }
 
 /**
- * Fills url template
+ * Fills the url template
  *
- * @param {string} url - Url template
- * @param {*} data - Url data
- * @param {boolean} skipUnexistedInTemplate - skip params not presented in url template
+ * @example
+ * processUrl('http://example.org/test/:fieldOne/test2/:fieldTwo', {fieldOne: 1000, fieldTwo: 'test3'}) // -> 'http://example.org/test/1000/test2/test3'
+ *
+ * @example
+ * processUrl('http://example.org/test/:fieldOne/?:fieldTwo', {fieldOne: 1000, fieldTwo: 'test3'}) // -> 'http://example.org/test/1000/?fieldTwo=test3'
+ *
+ * @param {string} url - Url template string
+ * @param {*} templateData - Template data object
+ * @param {*=} queryData - Additional query string data object
  * @returns {string} - Result url
  */
-export function processUrl(url: string, data: any, skipUnexistedInTemplate: ?boolean): string {
+export function processUrl(url: string, templateData: any, queryData: ?any): string {
     const params = getUrlParams(url);
     params.forEach(param => {
-        const value = getValue(data, param);
+        const value = getValue(templateData, param);
         url = url.replace(':' + param, value !== undefined ? paramToString(value) : '');
     });
-    if(skipUnexistedInTemplate) {
-        const queryParams = getQueryParams(url);
-        const queryData = {};
-        queryParams.forEach(param => {
-            applyValue(data, param, queryData);
-        });
-        url = url.replace(/[\&\?]:([^\&\?\/]+)/gi, '');
+    const queryParams = getQueryParams(url);
+    const templateQueryData = {};
+    queryParams.forEach(param => {
+        applyValue(templateData, param, templateQueryData);
+    });
+    url = url.replace(/[\&\?]:([^\&\?\/]+)/gi, '');
+    if(Object.keys(templateQueryData).length > 0) {
+        url = url.indexOf('?') > -1 ? url + '&' + queryString(templateQueryData) : url + '?' + queryString(templateQueryData);
+    }
+    if(queryData) {
         url = url.indexOf('?') > -1 ? url + '&' + queryString(queryData) : url + '?' + queryString(queryData);
     }
     return url;

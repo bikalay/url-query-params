@@ -99,7 +99,7 @@ function appendParamToQSMap(key: string, value: any): Array<{ key: string, value
 }
 
 /**
- * This function converts data object to query string
+ * This function converts data object to url query string
  *
  * @example
  * toQueryString({a: 1, b: 2, c: 'foo'}) // -> 'a=b&b=2&c=foo'
@@ -111,7 +111,7 @@ function appendParamToQSMap(key: string, value: any): Array<{ key: string, value
  * @param {Object} object - Data object to convert to query string
  * @returns {string} - Result query string
  */
-export function queryString(object: any): string {
+export function queryString(object: Object): string {
     if (Object.prototype.toString.call(object) === '[object Object]') {
         let resultArray: Array<{key: string, value: any}> = [];
         const keys = Object.keys(object);
@@ -127,5 +127,5 @@ export function queryString(object: any): string {
         });
         return resultArray.map(item => `${item.key}=${paramToString(item.value)}`).join('&');
     }
-    return paramToString(object);
+    throw new Error('Query string params should be object or array');
 }

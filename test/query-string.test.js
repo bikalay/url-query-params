@@ -71,8 +71,8 @@ test('Stringify nested arrays', () => {
 });
 
 test('Stringify not object data', () => {
-    expect(queryString(1)).toBe('1');
-    expect(queryString('hi')).toBe('hi');
-    expect(queryString(new Date(0))).toBe('1970-01-01T00%3A00%3A00.000Z');
-    expect(queryString('привет')).toBe('%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82');
+    expect(() => queryString(1)).toThrow(Error);
+    expect(() => queryString('hi')).toThrow(Error);
+    expect(() => queryString(new Date(0))).toThrow(Error);
+    expect(() => queryString('привет')).toThrow(Error);
 });
