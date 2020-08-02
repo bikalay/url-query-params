@@ -102,11 +102,11 @@ function appendParamToQSMap(key: string, value: any): Array<{ key: string, value
  * This function converts data object to url query string
  *
  * @example
- * toQueryString({a: 1, b: 2, c: 'foo'}) // -> 'a=b&b=2&c=foo'
+ * queryString({a: 1, b: 2, c: 'foo'}) // -> 'a=b&b=2&c=foo'
  * @example
- * toQueryString({a: [1,2,3], b: {c: 4, d: 5}}) // -> 'a[0]=1&a[1]=2&a[2]=3&b[c]=4&b[d]=5'
+ * queryString({a: [1,2,3], b: {c: 4, d: 5}}) // -> 'a[0]=1&a[1]=2&a[2]=3&b[c]=4&b[d]=5'
  * @example
- * toQueryString({a: [{b: 1, c: 2}, {b: 3, c: 4}]}) // -> 'a[0][b]=1&a[0][c]=2&a[1][b]=3&a[1][c]=4'
+ * queryString({a: [{b: 1, c: 2}, {b: 3, c: 4}]}) // -> 'a[0][b]=1&a[0][c]=2&a[1][b]=3&a[1][c]=4'
  *
  * @param {Object} object - Data object to convert to query string
  * @returns {string} - Result query string

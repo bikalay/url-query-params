@@ -7,32 +7,32 @@ anchors.add('h3');
 // Filter UI
 var tocElements = document.getElementById('toc').getElementsByTagName('li');
 
-document.getElementById('filter-input').addEventListener('keyup', function(e) {
-  var i, element, children;
+document.getElementById('filter-input').addEventListener('keyup', function (e) {
+    var i, element, children;
 
-  // enter key
-  if (e.keyCode === 13) {
-    // go to the first displayed item in the toc
-    for (i = 0; i < tocElements.length; i++) {
-      element = tocElements[i];
-      if (!element.classList.contains('display-none')) {
-        location.replace(element.firstChild.href);
-        return e.preventDefault();
+    // enter key
+    if (e.keyCode === 13) {
+        // go to the first displayed item in the toc
+        for (i = 0; i < tocElements.length; i++) {
+            element = tocElements[i];
+            if (!element.classList.contains('display-none')) {
+                location.replace(element.firstChild.href);
+                return e.preventDefault();
       }
     }
   }
 
-  var match = function() {
-    return true;
-  };
+    var match = function () {
+        return true;
+    };
 
   var value = this.value.toLowerCase();
 
   if (!value.match(/^\s*$/)) {
-    match = function(element) {
-      var html = element.firstChild.innerHTML;
-      return html && html.toLowerCase().indexOf(value) !== -1;
-    };
+      match = function (element) {
+          var html = element.firstChild.innerHTML;
+          return html && html.toLowerCase().indexOf(value) !== -1;
+      };
   }
 
   for (i = 0; i < tocElements.length; i++) {
@@ -114,16 +114,16 @@ var cw_without_sb = split_left.clientWidth;
 split_left.style.overflow = '';
 
 Split(['#split-left', '#split-right'], {
-  elementStyle: function(dimension, size, gutterSize) {
-    return {
-      'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'
-    };
-  },
-  gutterStyle: function(dimension, gutterSize) {
-    return {
-      'flex-basis': gutterSize + 'px'
-    };
-  },
+    elementStyle: function (dimension, size, gutterSize) {
+        return {
+            'flex-basis': 'calc(' + size + '% - ' + gutterSize + 'px)'
+        };
+    },
+    gutterStyle: function (dimension, gutterSize) {
+        return {
+            'flex-basis': gutterSize + 'px'
+        };
+    },
   gutterSize: 20,
   sizes: [33, 67]
 });
@@ -152,17 +152,17 @@ function loadState(ev) {
   }
 }
 
-window.addEventListener('load', function() {
-  // Restore after Firefox scrolls to hash.
-  setTimeout(function() {
-    loadState();
-    // Update with initial scroll position.
-    updateState();
-    // Update scroll positions only after we've loaded because Firefox
-    // emits an initial scroll event with 0.
-    split_left.addEventListener('scroll', updateState);
-    split_right.addEventListener('scroll', updateState);
-  }, 1);
+window.addEventListener('load', function () {
+    // Restore after Firefox scrolls to hash.
+    setTimeout(function () {
+        loadState();
+        // Update with initial scroll position.
+        updateState();
+        // Update scroll positions only after we've loaded because Firefox
+        // emits an initial scroll event with 0.
+        split_left.addEventListener('scroll', updateState);
+        split_right.addEventListener('scroll', updateState);
+    }, 1);
 });
 
 window.addEventListener('popstate', loadState);

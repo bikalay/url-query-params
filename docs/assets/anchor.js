@@ -6,32 +6,33 @@
 /* eslint-env amd, node */
 
 // https://github.com/umdjs/umd/blob/master/templates/returnExports.js
-(function(root, factory) {
-  'use strict';
-  if (typeof define === 'function' && define.amd) {
-    // AMD. Register as an anonymous module.
-    define([], factory);
-  } else if (typeof module === 'object' && module.exports) {
-    // Node. Does not work with strict CommonJS, but
-    // only CommonJS-like environments that support module.exports,
-    // like Node.
-    module.exports = factory();
-  } else {
-    // Browser globals (root is window)
-    root.AnchorJS = factory();
-    root.anchors = new root.AnchorJS();
-  }
-})(this, function() {
-  'use strict';
-  function AnchorJS(options) {
-    this.options = options || {};
-    this.elements = [];
+(function (root, factory) {
+    'use strict';
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define([], factory);
+    } else if (typeof module === 'object' && module.exports) {
+        // Node. Does not work with strict CommonJS, but
+        // only CommonJS-like environments that support module.exports,
+        // like Node.
+        module.exports = factory();
+    } else {
+        // Browser globals (root is window)
+        root.AnchorJS = factory();
+        root.anchors = new root.AnchorJS();
+    }
+})(this, function () {
+    'use strict';
 
-    /**
-     * Assigns options to the internal options object, and provides defaults.
-     * @param {Object} opts - Options object
-     */
-    function _applyRemainingDefaultOptions(opts) {
+    function AnchorJS(options) {
+        this.options = options || {};
+        this.elements = [];
+
+        /**
+         * Assigns options to the internal options object, and provides defaults.
+         * @param {Object} opts - Options object
+         */
+        function _applyRemainingDefaultOptions(opts) {
       opts.icon = opts.hasOwnProperty('icon') ? opts.icon : '\ue9cb'; // Accepts characters (and also URLs?), like  '#', '¶', '❡', or '§'.
       opts.visible = opts.hasOwnProperty('visible') ? opts.visible : 'hover'; // Also accepts 'always' & 'touch'
       opts.placement = opts.hasOwnProperty('placement')
@@ -51,11 +52,11 @@
      * https://github.com/Modernizr/Modernizr/blob/da22eb27631fc4957f67607fe6042e85c0a84656/feature-detects/touchevents.js#L40
      * @returns {Boolean} - true if the current device supports touch.
      */
-    this.isTouchDevice = function() {
-      return !!(
-        'ontouchstart' in window ||
-        (window.DocumentTouch && document instanceof DocumentTouch)
-      );
+    this.isTouchDevice = function () {
+        return !!(
+            'ontouchstart' in window ||
+            (window.DocumentTouch && document instanceof DocumentTouch)
+        );
     };
 
     /**
@@ -64,17 +65,17 @@
      *                                            to. Also accepts an array or nodeList containing the relavant elements.
      * @returns {this}                           - The AnchorJS object
      */
-    this.add = function(selector) {
-      var elements,
-        elsWithIds,
-        idList,
-        elementID,
-        i,
-        index,
-        count,
-        tidyText,
-        newTidyText,
-        readableID,
+    this.add = function (selector) {
+        var elements,
+            elsWithIds,
+            idList,
+            elementID,
+            i,
+            index,
+            count,
+            tidyText,
+            newTidyText,
+            readableID,
         anchor,
         visibleOptionToUse,
         indexesToDrop = [];
@@ -193,17 +194,17 @@
      *                                            OR a nodeList / array containing the DOM elements.
      * @returns {this}                           - The AnchorJS object
      */
-    this.remove = function(selector) {
-      var index,
-        domAnchor,
-        elements = _getElements(selector);
+    this.remove = function (selector) {
+        var index,
+            domAnchor,
+            elements = _getElements(selector);
 
-      for (var i = 0; i < elements.length; i++) {
-        domAnchor = elements[i].querySelector('.anchorjs-link');
-        if (domAnchor) {
-          // Drop the element from our main list, if it's in there.
-          index = this.elements.indexOf(elements[i]);
-          if (index !== -1) {
+        for (var i = 0; i < elements.length; i++) {
+            domAnchor = elements[i].querySelector('.anchorjs-link');
+            if (domAnchor) {
+                // Drop the element from our main list, if it's in there.
+                index = this.elements.indexOf(elements[i]);
+                if (index !== -1) {
             this.elements.splice(index, 1);
           }
           // Remove the anchor from the DOM.
@@ -216,8 +217,8 @@
     /**
      * Removes all anchorjs links. Mostly used for tests.
      */
-    this.removeAll = function() {
-      this.remove(this.elements);
+    this.removeAll = function () {
+        this.remove(this.elements);
     };
 
     /**
@@ -229,16 +230,16 @@
      * @param  {String} text - Any text. Usually pulled from the webpage element we are linking to.
      * @returns {String}      - hyphen-delimited text for use in IDs and URLs.
      */
-    this.urlify = function(text) {
-      // Regex for finding the nonsafe URL characters (many need escaping): & +$,:;=?@"#{}|^~[`%!'<>]./()*\
-      var nonsafeChars = /[& +$,:;=?@"#{}|^~[`%!'<>\]\.\/\(\)\*\\]/g,
-        urlText;
+    this.urlify = function (text) {
+        // Regex for finding the nonsafe URL characters (many need escaping): & +$,:;=?@"#{}|^~[`%!'<>]./()*\
+        var nonsafeChars = /[& +$,:;=?@"#{}|^~[`%!'<>\]\.\/\(\)\*\\]/g,
+            urlText;
 
-      // The reason we include this _applyRemainingDefaultOptions is so urlify can be called independently,
-      // even after setting options. This can be useful for tests or other applications.
-      if (!this.options.truncate) {
-        _applyRemainingDefaultOptions(this.options);
-      }
+        // The reason we include this _applyRemainingDefaultOptions is so urlify can be called independently,
+        // even after setting options. This can be useful for tests or other applications.
+        if (!this.options.truncate) {
+            _applyRemainingDefaultOptions(this.options);
+        }
 
       // Note: we trim hyphens after truncating because truncating can cause dangling hyphens.
       // Example string:                                  // " ⚡⚡ Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
@@ -260,15 +261,15 @@
      * @param    {HTMLElemnt}  el - a DOM node
      * @returns   {Boolean}     true/false
      */
-    this.hasAnchorJSLink = function(el) {
-      var hasLeftAnchor =
-          el.firstChild &&
-          (' ' + el.firstChild.className + ' ').indexOf(' anchorjs-link ') > -1,
-        hasRightAnchor =
-          el.lastChild &&
-          (' ' + el.lastChild.className + ' ').indexOf(' anchorjs-link ') > -1;
+    this.hasAnchorJSLink = function (el) {
+        var hasLeftAnchor =
+            el.firstChild &&
+            (' ' + el.firstChild.className + ' ').indexOf(' anchorjs-link ') > -1,
+            hasRightAnchor =
+                el.lastChild &&
+                (' ' + el.lastChild.className + ' ').indexOf(' anchorjs-link ') > -1;
 
-      return hasLeftAnchor || hasRightAnchor || false;
+        return hasLeftAnchor || hasRightAnchor || false;
     };
 
     /**
