@@ -3,8 +3,8 @@
 <head>
     <meta charset='utf-8'>
     <title>url-query-params 0.0.1 | Documentation</title>
-    <meta name='description' content='Library to work with url parameters'>
-    <meta name='viewport' content='width=device-width,initial-scale=1'>
+    <meta content='Library to work with url parameters' name='description'>
+    <meta content='width=device-width,initial-scale=1' name='viewport'>
     <link href='assets/bass.css' rel='stylesheet'>
     <link href='assets/style.css' rel='stylesheet'>
     <link href='assets/github.css' rel='stylesheet'>
@@ -12,52 +12,62 @@
 </head>
 <body class='documentation m0'>
     <div class='flex'>
-      <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
-        <div class='py1 px2'>
-          <h3 class='mb0 no-anchor'>url-query-params</h3>
-          <div class='mb1'><code>0.0.1</code></div>
-            <input
-                placeholder='Filter'
-                id='filter-input'
-                class='col12 block input'
-                autocapitalize='off'
-                autocorrect='off'
-                spellcheck='false'
-                type='text'/>
-          <div id='toc'>
-            <ul class='list-reset h5 py1-ul'>
+        <div id='split-left' class='overflow-auto fs0 height-viewport-100'>
+            <div class='py1 px2'>
+                <h3 class='mb0 no-anchor'>url-query-params</h3>
+                <div class='mb1'><code>0.0.1</code></div>
+                <input
+                    autocapitalize='off'
+                    autocorrect='off'
+                    class='col12 block input'
+                    id='filter-input'
+                    placeholder='Filter'
+                    spellcheck='false'
+                    type='text'/>
+                <div id='toc'>
+                    <ul class='list-reset h5 py1-ul'>
 
 
-                <li><a
-                  href='#processurl'
-                  class="">
-                  processUrl
+                        <li><a
+                            class=""
+                            href='#processurl'>
+                            processUrl
 
-                </a>
+                        </a>
 
-                </li>
-
-
-                <li><a
-                  href='#paramtostring'
-                  class="">
-                  paramToString
-
-                </a>
-
-                </li>
+                        </li>
 
 
-                <li><a
-                  href='#querystring'
-                  class="">
-                  queryString
+                        <li><a
+                            href='#paramtostring'
+                            class="">
+                            paramToString
 
-                </a>
+                        </a>
 
-                </li>
+                        </li>
 
-            </ul>
+
+                        <li><a
+                            class=""
+                            href='#querystring'>
+                            queryString
+
+                        </a>
+
+                        </li>
+
+
+                        <li><a
+                            class=""
+                            href='#parse'>
+                            parse
+
+                        </a>
+
+                        </li>
+
+                    </ul>
           </div>
           <div class='mt1 h6 quiet'>
             <a href='https://documentation.js.org/reading-documentation.html'>Need help reading this?</a>
@@ -72,64 +82,74 @@
 
   <div class='clearfix'>
 
-    <h3 class='fl m0' id='processurl'>
-      processUrl
-    </h3>
+      <h3 class='fl m0' id='processurl'>
+          processUrl
+      </h3>
 
 
   </div>
 
 
-  <p>Fills the url template</p>
+              <p>Fills the url template</p>
 
-    <div class='pre p1 fill-light mt0'>processUrl(url: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>, templateData: any, queryData: any?): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+              <div class='pre p1 fill-light mt0'>processUrl(url: <a
+                  href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>,
+                  templateData: any, queryData: any?): <a
+                      href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+              </div>
 
 
               <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
+              <div class='prose'>
 
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>url</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
-	    Url template string
+                  <div class='space-bottom0'>
+                      <div>
+                          <span class='code bold'>url</span> <code class='quiet'>(<a
+                          href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+                          Url template string
 
-          </div>
+                      </div>
 
-        </div>
+                  </div>
 
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>templateData</span> <code class='quiet'>(any)</code>
-	    Template data object
-
-          </div>
-
-        </div>
-
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>queryData</span> <code class='quiet'>(any?)</code>
-	    Additional query string data object
+                  <div class='space-bottom0'>
+                      <div>
+                          <span class='code bold'>templateData</span> <code class='quiet'>(any)</code>
+                          Template data object
 
           </div>
 
         </div>
 
-    </div>
+                  <div class='space-bottom0'>
+                      <div>
+                          <span class='code bold'>queryData</span> <code class='quiet'>(any?)</code>
+                          Additional query string data object
+
+                      </div>
+
+                  </div>
+
+              </div>
 
 
               <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
-        Result url
+              <code><a
+                  href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+              Result url
 
 
               <div class='py1 quiet mt1 prose-big'>Example</div>
 
 
-              <pre class='p1 overflow-auto round fill-light'>processUrl(<span class="hljs-string">'http://example.org/test/:fieldOne/test2/:fieldTwo'</span>, {<span class="hljs-attr">fieldOne</span>: <span class="hljs-number">1000</span>, <span class="hljs-attr">fieldTwo</span>: <span class="hljs-string">'test3'</span>}) <span class="hljs-comment">// -&gt; 'http://example.org/test/1000/test2/test3'</span></pre>
+              <pre class='p1 overflow-auto round fill-light'>processUrl(<span class="hljs-string">'http://example.org/test/:fieldOne/test2/:fieldTwo'</span>, {<span
+                  class="hljs-attr">fieldOne</span>: <span class="hljs-number">1000</span>, <span class="hljs-attr">fieldTwo</span>: <span
+                  class="hljs-string">'test3'</span>}) <span class="hljs-comment">// -&gt; 'http://example.org/test/1000/test2/test3'</span></pre>
 
 
-              <pre class='p1 overflow-auto round fill-light'>processUrl(<span class="hljs-string">'http://example.org/test/:fieldOne/?:fieldTwo'</span>, {<span class="hljs-attr">fieldOne</span>: <span class="hljs-number">1000</span>, <span class="hljs-attr">fieldTwo</span>: <span class="hljs-string">'test3'</span>}) <span class="hljs-comment">// -&gt; 'http://example.org/test/1000/?fieldTwo=test3'</span></pre>
+              <pre class='p1 overflow-auto round fill-light'>processUrl(<span class="hljs-string">'http://example.org/test/:fieldOne/?:fieldTwo'</span>, {<span
+                  class="hljs-attr">fieldOne</span>: <span class="hljs-number">1000</span>, <span class="hljs-attr">fieldTwo</span>: <span
+                  class="hljs-string">'test3'</span>}) <span class="hljs-comment">// -&gt; 'http://example.org/test/1000/?fieldTwo=test3'</span></pre>
 
 
           </section>
@@ -141,8 +161,8 @@
               <div class='clearfix'>
 
                   <h3 class='fl m0' id='paramtostring'>
-      paramToString
-    </h3>
+                      paramToString
+                  </h3>
 
 
               </div>
@@ -150,42 +170,49 @@
 
               <p>This function converts any value to encoded string;</p>
 
-    <div class='pre p1 fill-light mt0'>paramToString(value: any): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+              <div class='pre p1 fill-light mt0'>paramToString(value: any): <a
+                  href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+              </div>
 
 
               <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
+              <div class='prose'>
 
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>value</span> <code class='quiet'>(any)</code>
-	    any value need to convert to string
+                  <div class='space-bottom0'>
+                      <div>
+                          <span class='code bold'>value</span> <code class='quiet'>(any)</code>
+                          any value need to convert to string
 
-          </div>
+                      </div>
 
-        </div>
+                  </div>
 
-    </div>
+              </div>
 
 
               <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
-        result encoded string
+              <code><a
+                  href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+              result encoded string
 
 
               <div class='py1 quiet mt1 prose-big'>Example</div>
 
 
-              <pre class='p1 overflow-auto round fill-light'>paramToString(<span class="hljs-number">1</span>) <span class="hljs-comment">// -&gt; '1'</span></pre>
+              <pre class='p1 overflow-auto round fill-light'>paramToString(<span class="hljs-number">1</span>) <span
+                  class="hljs-comment">// -&gt; '1'</span></pre>
 
 
-              <pre class='p1 overflow-auto round fill-light'>paramToString(<span class="hljs-keyword">new</span> <span class="hljs-built_in">Date</span>()) <span class="hljs-comment">// -&gt; "2018-11-11T17%3A22%3A58.937Z"</span></pre>
+              <pre class='p1 overflow-auto round fill-light'>paramToString(<span class="hljs-keyword">new</span> <span
+                  class="hljs-built_in">Date</span>()) <span class="hljs-comment">// -&gt; "2018-11-11T17%3A22%3A58.937Z"</span></pre>
 
 
-              <pre class='p1 overflow-auto round fill-light'>paramToString(<span class="hljs-string">'m&amp;m\'s'</span>) <span class="hljs-comment">// -&gt; 'm%26m's'</span></pre>
+              <pre class='p1 overflow-auto round fill-light'>paramToString(<span class="hljs-string">'m&amp;m\'s'</span>) <span
+                  class="hljs-comment">// -&gt; 'm%26m's'</span></pre>
 
 
-              <pre class='p1 overflow-auto round fill-light'>paramToString(<span class="hljs-string">'привет'</span>) <span class="hljs-comment">// -&gt; '%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82'</span></pre>
+              <pre class='p1 overflow-auto round fill-light'>paramToString(<span
+                  class="hljs-string">'привет'</span>) <span class="hljs-comment">// -&gt; '%D0%BF%D1%80%D0%B8%D0%B2%D0%B5%D1%82'</span></pre>
 
 
           </section>
@@ -197,8 +224,8 @@
               <div class='clearfix'>
 
                   <h3 class='fl m0' id='querystring'>
-      queryString
-    </h3>
+                      queryString
+                  </h3>
 
 
               </div>
@@ -206,27 +233,32 @@
 
               <p>This function converts data object to url query string</p>
 
-    <div class='pre p1 fill-light mt0'>queryString(object: <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>): <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></div>
+              <div class='pre p1 fill-light mt0'>queryString(object: <a
+                  href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>):
+                  <a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>
+              </div>
 
 
               <div class='py1 quiet mt1 prose-big'>Parameters</div>
-    <div class='prose'>
+              <div class='prose'>
 
-        <div class='space-bottom0'>
-          <div>
-            <span class='code bold'>object</span> <code class='quiet'>(<a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
-	    Data object to convert to query string
+                  <div class='space-bottom0'>
+                      <div>
+                          <span class='code bold'>object</span> <code class='quiet'>(<a
+                          href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a>)</code>
+                          Data object to convert to query string
 
-          </div>
+                      </div>
 
-        </div>
+                  </div>
 
-    </div>
+              </div>
 
 
               <div class='py1 quiet mt1 prose-big'>Returns</div>
-      <code><a href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
-        Result query string
+              <code><a
+                  href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></code>:
+              Result query string
 
 
               <div class='py1 quiet mt1 prose-big'>Example</div>
@@ -250,6 +282,51 @@
                   class="hljs-attr">c</span>: <span class="hljs-number">2</span>}, {<span
                   class="hljs-attr">b</span>: <span class="hljs-number">3</span>, <span
                   class="hljs-attr">c</span>: <span class="hljs-number">4</span>}]}) <span class="hljs-comment">// -&gt; 'a[0][b]=1&amp;a[0][c]=2&amp;a[1][b]=3&amp;a[1][c]=4'</span></pre>
+
+
+          </section>
+
+
+          <section class='p2 mb2 clearfix bg-white minishadow'>
+
+
+              <div class='clearfix'>
+
+                  <h3 class='fl m0' id='parse'>
+                      parse
+                  </h3>
+
+
+              </div>
+
+
+              <p>Parse query string to object</p>
+
+              <div class='pre p1 fill-light mt0'>parse(str: <a
+                  href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>):
+                  any
+              </div>
+
+
+              <div class='py1 quiet mt1 prose-big'>Parameters</div>
+              <div class='prose'>
+
+                  <div class='space-bottom0'>
+                      <div>
+                          <span class='code bold'>str</span> <code class='quiet'>(<a
+                          href="https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String">string</a>)</code>
+                          query string
+
+                      </div>
+
+                  </div>
+
+              </div>
+
+
+              <div class='py1 quiet mt1 prose-big'>Returns</div>
+              <code>any</code>:
+              parsed object
 
 
           </section>

@@ -129,3 +129,51 @@ export function queryString(object: Object): string {
     }
     throw new Error('Query string params should be object or array');
 }
+
+/**
+ * Parse query string to object
+ * @param {string} str - query string
+ * @return {*} - parsed object
+ */
+export function parse(str: string): any {
+    const paramsStrArray = str.replace(/^\?/, '').split('&');
+    const result = {};
+    paramsStrArray.forEach(item => {
+        const keyValueArr = item.split('=');
+        const key = keyValueArr[0];
+        const value = keyValueArr[1];
+        const pathArr = key.split(/\[|\]/).filter(k => k);
+        let obj = result;
+        pathArr.forEach((k, index) => {
+            if (Array.isArray(obj)) {
+                k = parseInt(k);
+            }
+            if (index === pathArr.length - 1) {
+                obj[k] = parseValue(value);
+            } else if (isNaN(pathArr[index + 1])) {
+                if (!obj[k]) {
+                    obj[k] = {}
+                }
+            } else {
+                if (!obj[k]) {
+                    obj[k] = []
+                }
+            }
+            obj = obj[k];
+        });
+    });
+    return result;
+}
+
+export function parseValue(value: string): any {
+    if (!isNaN(value)) {
+        return Number(value);
+    }
+    if (value === 'true') {
+        return true;
+    }
+    if (value === 'false') {
+        return false;
+    }
+    return value;
+}

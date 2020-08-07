@@ -18,32 +18,32 @@ document.getElementById('filter-input').addEventListener('keyup', function (e) {
             if (!element.classList.contains('display-none')) {
                 location.replace(element.firstChild.href);
                 return e.preventDefault();
-      }
+            }
+        }
     }
-  }
 
     var match = function () {
         return true;
     };
 
-  var value = this.value.toLowerCase();
+    var value = this.value.toLowerCase();
 
-  if (!value.match(/^\s*$/)) {
-      match = function (element) {
-          var html = element.firstChild.innerHTML;
-          return html && html.toLowerCase().indexOf(value) !== -1;
-      };
-  }
-
-  for (i = 0; i < tocElements.length; i++) {
-    element = tocElements[i];
-    children = Array.from(element.getElementsByTagName('li'));
-    if (match(element) || children.some(match)) {
-      element.classList.remove('display-none');
-    } else {
-      element.classList.add('display-none');
+    if (!value.match(/^\s*$/)) {
+        match = function (element) {
+            var html = element.firstChild.innerHTML;
+            return html && html.toLowerCase().indexOf(value) !== -1;
+        };
     }
-  }
+
+    for (i = 0; i < tocElements.length; i++) {
+        element = tocElements[i];
+        children = Array.from(element.getElementsByTagName('li'));
+        if (match(element) || children.some(match)) {
+            element.classList.remove('display-none');
+        } else {
+            element.classList.add('display-none');
+        }
+    }
 });
 
 var items = document.getElementsByClassName('toggle-sibling');
@@ -124,8 +124,8 @@ Split(['#split-left', '#split-right'], {
             'flex-basis': gutterSize + 'px'
         };
     },
-  gutterSize: 20,
-  sizes: [33, 67]
+    gutterSize: 20,
+    sizes: [33, 67]
 });
 
 // Chrome doesn't remember scroll position properly so do it ourselves.

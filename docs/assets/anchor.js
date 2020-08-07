@@ -33,17 +33,17 @@
          * @param {Object} opts - Options object
          */
         function _applyRemainingDefaultOptions(opts) {
-      opts.icon = opts.hasOwnProperty('icon') ? opts.icon : '\ue9cb'; // Accepts characters (and also URLs?), like  '#', '¶', '❡', or '§'.
-      opts.visible = opts.hasOwnProperty('visible') ? opts.visible : 'hover'; // Also accepts 'always' & 'touch'
-      opts.placement = opts.hasOwnProperty('placement')
-        ? opts.placement
-        : 'right'; // Also accepts 'left'
-      opts.class = opts.hasOwnProperty('class') ? opts.class : ''; // Accepts any class name.
-      // Using Math.floor here will ensure the value is Number-cast and an integer.
-      opts.truncate = opts.hasOwnProperty('truncate')
-        ? Math.floor(opts.truncate)
-        : 64; // Accepts any value that can be typecast to a number.
-    }
+            opts.icon = opts.hasOwnProperty('icon') ? opts.icon : '\ue9cb'; // Accepts characters (and also URLs?), like  '#', '¶', '❡', or '§'.
+            opts.visible = opts.hasOwnProperty('visible') ? opts.visible : 'hover'; // Also accepts 'always' & 'touch'
+            opts.placement = opts.hasOwnProperty('placement')
+                ? opts.placement
+                : 'right'; // Also accepts 'left'
+            opts.class = opts.hasOwnProperty('class') ? opts.class : ''; // Accepts any class name.
+            // Using Math.floor here will ensure the value is Number-cast and an integer.
+            opts.truncate = opts.hasOwnProperty('truncate')
+                ? Math.floor(opts.truncate)
+                : 64; // Accepts any value that can be typecast to a number.
+        }
 
     _applyRemainingDefaultOptions(this.options);
 
@@ -76,25 +76,25 @@
             tidyText,
             newTidyText,
             readableID,
-        anchor,
-        visibleOptionToUse,
-        indexesToDrop = [];
+            anchor,
+            visibleOptionToUse,
+            indexesToDrop = [];
 
-      // We reapply options here because somebody may have overwritten the default options object when setting options.
-      // For example, this overwrites all options but visible:
-      //
-      // anchors.options = { visible: 'always'; }
-      _applyRemainingDefaultOptions(this.options);
+        // We reapply options here because somebody may have overwritten the default options object when setting options.
+        // For example, this overwrites all options but visible:
+        //
+        // anchors.options = { visible: 'always'; }
+        _applyRemainingDefaultOptions(this.options);
 
-      visibleOptionToUse = this.options.visible;
-      if (visibleOptionToUse === 'touch') {
-        visibleOptionToUse = this.isTouchDevice() ? 'always' : 'hover';
-      }
+        visibleOptionToUse = this.options.visible;
+        if (visibleOptionToUse === 'touch') {
+            visibleOptionToUse = this.isTouchDevice() ? 'always' : 'hover';
+        }
 
-      // Provide a sensible default selector, if none is given.
-      if (!selector) {
-        selector = 'h2, h3, h4, h5, h6';
-      }
+        // Provide a sensible default selector, if none is given.
+        if (!selector) {
+            selector = 'h2, h3, h4, h5, h6';
+        }
 
       elements = _getElements(selector);
 
@@ -205,13 +205,13 @@
                 // Drop the element from our main list, if it's in there.
                 index = this.elements.indexOf(elements[i]);
                 if (index !== -1) {
-            this.elements.splice(index, 1);
-          }
-          // Remove the anchor from the DOM.
-          elements[i].removeChild(domAnchor);
+                    this.elements.splice(index, 1);
+                }
+                // Remove the anchor from the DOM.
+                elements[i].removeChild(domAnchor);
+            }
         }
-      }
-      return this;
+        return this;
     };
 
     /**
@@ -241,18 +241,18 @@
             _applyRemainingDefaultOptions(this.options);
         }
 
-      // Note: we trim hyphens after truncating because truncating can cause dangling hyphens.
-      // Example string:                                  // " ⚡⚡ Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
-      urlText = text
-        .trim() // "⚡⚡ Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
-        .replace(/\'/gi, '') // "⚡⚡ Dont forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
-        .replace(nonsafeChars, '-') // "⚡⚡-Dont-forget--URL-fragments-should-be-i18n-friendly--hyphenated--short--and-clean-"
-        .replace(/-{2,}/g, '-') // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-short-and-clean-"
-        .substring(0, this.options.truncate) // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-"
-        .replace(/^-+|-+$/gm, '') // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated"
-        .toLowerCase(); // "⚡⚡-dont-forget-url-fragments-should-be-i18n-friendly-hyphenated"
+        // Note: we trim hyphens after truncating because truncating can cause dangling hyphens.
+        // Example string:                                  // " ⚡⚡ Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
+        urlText = text
+            .trim() // "⚡⚡ Don't forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
+            .replace(/\'/gi, '') // "⚡⚡ Dont forget: URL fragments should be i18n-friendly, hyphenated, short, and clean."
+            .replace(nonsafeChars, '-') // "⚡⚡-Dont-forget--URL-fragments-should-be-i18n-friendly--hyphenated--short--and-clean-"
+            .replace(/-{2,}/g, '-') // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-short-and-clean-"
+            .substring(0, this.options.truncate) // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated-"
+            .replace(/^-+|-+$/gm, '') // "⚡⚡-Dont-forget-URL-fragments-should-be-i18n-friendly-hyphenated"
+            .toLowerCase(); // "⚡⚡-dont-forget-url-fragments-should-be-i18n-friendly-hyphenated"
 
-      return urlText;
+        return urlText;
     };
 
     /**
